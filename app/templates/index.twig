@@ -1,0 +1,16 @@
+{% extends 'layouts/base.twig' %}
+
+{% block title %}Welcome to Maverick{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>{{ block('title') }}</h1>
+        <p>You're running the base installation of Maverick.</p>
+    </div>
+</div>
+<div class="container">
+    <h2>Ready to start developing?</h2>
+    <p>To begin, start by editing this handler. You can find this handler in the following file: <code style="word-break: break-all;">{{ handlerLocation }}</code>. From there, you may begin changing the look and feel of this page.</p>
+</div>
+{% endblock %}
