@@ -10,7 +10,7 @@ namespace App\Controller;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Twig_Environment;
+use Maverick\Utility\Renderer\RendererInterface;
 
 abstract class AbstractController
 {
@@ -30,9 +30,9 @@ abstract class AbstractController
     protected $params;
 
     /**
-     * @var Twig_Environment
+     * @var RendererInterface
      */
-    protected $twig;
+    protected $renderer;
 
     /**
      * @param ServerRequestInterface $request
@@ -52,11 +52,11 @@ abstract class AbstractController
     }
 
     /**
-     * @param Twig_Environment $env
+     * @param RendererInterface $renderer
      */
-    public function setTemplateLoader(Twig_Environment $env)
+    public function setRenderer(RendererInterface $renderer)
     {
-        $this->twig = $env;
+        $this->renderer = $renderer;
     }
 
     /**
@@ -65,7 +65,7 @@ abstract class AbstractController
      */
     protected function render(string $template, array $variables = [])
     {
-        $rendered = $this->twig->render($template . '.twig', $variables);
+        $rendered = $this->renderer->render($template, $variables);
         $this->response->getBody()->write($rendered);
     }
 

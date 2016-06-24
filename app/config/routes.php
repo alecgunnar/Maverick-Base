@@ -1,8 +1,5 @@
 <?php
 
-return [
-    'index' => [
-        'path' => '/',
-        'handler' => 'controller.index'
-    ]
-];
+return function($loader) {
+    $loader->get('/', 'controller.index');
+};
